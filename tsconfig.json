@@ -1,0 +1,12 @@
+{
+  "include": ["src/index.tsx"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "outFile": "build/index.js",
+    "module": "amd",
+    "lib": ["ES2021", "dom"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "jsx": "react"
+  }
+}

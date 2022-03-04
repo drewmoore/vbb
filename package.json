@@ -1,0 +1,23 @@
+{
+  "name": "vbb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -r build/* && tsc src/index.ts --outfile build/index.js",
+    "start": "npm run build && node build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drewmoore/vbb.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drewmoore/vbb/issues"
+  },
+  "homepage": "https://github.com/drewmoore/vbb#readme",
+  "dependencies": {
+    "typescript": "^4.6.2"
+  }
+}

@@ -1,4 +1,4 @@
-import Form from "@/components/form";
+import Form from "@/form";
 
 export default function Home() {
   return (
@@ -7,7 +7,7 @@ export default function Home() {
         <p>top-left corner</p>
       </div>
 
-      <div className="relative flex place-items-center">
+      <div>
         <h1>My Transit App</h1>
 
         <Form />

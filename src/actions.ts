@@ -5,7 +5,8 @@ import axios, { AxiosError } from "axios"
 import { ApiResponse } from "./types"
 
 type VbbJourneyLeg = {
-  origin: { name: string, address: string };
+  origin: { id: number, type: string, name: string, address: string };
+  destination: { id: number, type: string, name: string, address: string };
 }
 
 type VbbJourney = {

@@ -1,11 +1,26 @@
 'use server'
 
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 
-// type of formState seems to be return value
-export async function search(_formState, formData: FormData) {
-  const results = await axios.get("https://v6.vbb.transport.rest/locations", { params: { query: formData.get('query') } })
+import { ApiResponse } from "@/types"
 
-  // TODO: make object with either data or error, like in route search
-  return results.data
+type VbbLocation = {
+  type: string;
+  id: number;
+  address: string;
+}
+
+export async function search(_formState: ApiResponse<VbbLocation>, formData: FormData): Promise<ApiResponse<VbbLocation>> {
+  try {
+    const results = await axios.get("https://v6.vbb.transport.rest/locations", { params: { query: formData.get('query') } })
+
+    // TODO: make object with either data or error, like in route search
+    return { data: results.data }
+  } catch (e: AxiosError | any) {
+    // TODO: make log, monitor
+    console.log('hello route error', e)
+
+    // e type is AxiosError
+    return { error: { status: e.response.status } }
+  }
 }

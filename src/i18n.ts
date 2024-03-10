@@ -1,6 +1,6 @@
 // Naive implementation of localization until the project gets to that point...
-export const translate = (key, interpolations = {}) => {
-  const dictionary = {
+export const translate = (key: string, interpolations = {} as any) : string => {
+  const dictionary: { [index: string]: string } = {
     from: "From",
     to: "To",
     searchLocation: "Search for Location",

@@ -2,8 +2,18 @@
 
 import axios from "axios"
 
-// type of formState seems to be return value
-export async function search(_formState, formData: FormData) {
+import { ApiResponse } from "./types"
+
+type VbbJourneyLeg = {
+  origin: { name: string, address: string };
+}
+
+type VbbJourney = {
+  refreshToken: string;
+  legs: Array<VbbJourneyLeg>;
+}
+
+export async function search(_formState: ApiResponse<VbbJourney>, formData: FormData): Promise<ApiResponse<VbbJourney>> {
   try {
     const from = JSON.parse(formData.get("from"))
     const to = JSON.parse(formData.get("to"))

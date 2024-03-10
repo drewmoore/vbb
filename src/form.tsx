@@ -9,8 +9,8 @@ import { translate } from "@/i18n"
 
 export default function Form() {
   const [formState, formAction] = useFormState(search, undefined)
-  const [from, setFrom] = useState()
-  const [to, setTo] = useState()
+  const [from, setFrom] = useState({ address: null })
+  const [to, setTo] = useState({ address: null })
 
   return (
     <>
@@ -34,8 +34,10 @@ export default function Form() {
 
       {formState?.data &&
         <ul>
-          {formState.data.journeys.map(journey => (
-            <li>{journey.legs[0].origin.address} -> {journey.legs[journey.legs.length - 1].origin.name}</li>
+          {formState.data.journeys.map((journey: VbbJourney) => (
+            <li key={journey.refreshToken}>
+              {journey.legs[0].origin.address} {`->`} {journey.legs[journey.legs.length - 1].origin.name}
+            </li>
           ))}
         </ul>
       }

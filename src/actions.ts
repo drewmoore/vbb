@@ -1,6 +1,6 @@
 'use server'
 
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 
 import { ApiResponse } from "./types"
 
@@ -13,7 +13,11 @@ type VbbJourney = {
   legs: Array<VbbJourneyLeg>;
 }
 
-export async function search(_formState: ApiResponse<VbbJourney>, formData: FormData): Promise<ApiResponse<VbbJourney>> {
+type VbbJourneysResponse = {
+  journeys: Array<VbbJourney>;
+}
+
+export async function search(_formState: ApiResponse<VbbJourneysResponse>, formData: FormData): Promise<ApiResponse<VbbJourneysResponse>> {
   try {
     const from = JSON.parse(formData.get("from"))
     const to = JSON.parse(formData.get("to"))
@@ -566,11 +570,10 @@ export async function search(_formState: ApiResponse<VbbJourney>, formData: Form
    */
 
     return { data: results.data }
-  } catch (e) {
+  } catch (e: AxiosError | any) {
     // TODO: make log, monitor
     console.log('hello route error', e)
 
-    // e type is AxiosError
     return { error: { status: e.response.status } }
   }
 }

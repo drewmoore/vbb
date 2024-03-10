@@ -34,7 +34,7 @@ export default function Form() {
 
       {formState?.data &&
         <ul>
-          {formState.data.journeys.map((journey: VbbJourney) => (
+          {formState.data.journeys.map((journey) => (
             <li key={journey.refreshToken}>
               {journey.legs[0].origin.address} {`->`} {journey.legs[journey.legs.length - 1].origin.name}
             </li>
